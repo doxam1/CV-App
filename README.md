@@ -1,2 +1,1 @@
-# CV-App
-CV Application for the Odin project.
+CV Application in react project for the Odin project.
