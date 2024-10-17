@@ -2,6 +2,7 @@ import General from "./components/general";
 import Education from "./components/Education";
 import Experience from "./components/Experience";
 import About from "./components/About";
+import Print from "./components/Print";
 
 import { useState } from "react";
 
@@ -30,6 +31,7 @@ const App = () => {
     },
   ]);
   const [totalExperienceJobs, setTotalJobs] = useState(1);
+  const [aboutSection, setAboutSection] = useState("");
 
   function hangdleNextBtn(e) {
     e.preventDefault();
@@ -39,6 +41,11 @@ const App = () => {
   function handlePrevSection(e) {
     e.preventDefault();
     setCurrentSection(currentSection - 1);
+  }
+
+  function handleSubmitClick(e) {
+    e.preventDefault();
+    setCurrentSection(currentSection + 1);
   }
   return (
     <>
@@ -67,7 +74,20 @@ const App = () => {
             setTotalJobs={setTotalJobs}
           />
         )}
-        {currentSection === 3 && <About />}
+        {currentSection === 3 && (
+          <About
+            aboutSection={aboutSection}
+            setAboutSection={setAboutSection}
+          />
+        )}
+        {currentSection == 4 && (
+          <Print
+            personalInfo={personalInfo}
+            educationSection={educationSection}
+            experience={experience}
+            aboutSection={aboutSection}
+          />
+        )}
 
         <hr />
         <div className="btnsContainer">
@@ -86,7 +106,7 @@ const App = () => {
         </div>
         {currentSection === 3 && (
           <div className="btnsContainer">
-            <button>Submit</button>
+            <button onClick={handleSubmitClick}>Submit</button>
           </div>
         )}
 
