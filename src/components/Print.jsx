@@ -8,7 +8,7 @@ const Print = ({
 }) => {
   return (
     <>
-      <section className="section printable">
+      <section className="section printable fira-sans-regular">
         <hr className="headerHr" />
         <div className="center">
           <h2>{`${personalInfo.fullName}`}</h2>
@@ -24,12 +24,18 @@ const Print = ({
         <hr />
         <div className="divInPrint">
           <h5 style={{ marginBottom: "10px" }}>WORK HISTORY</h5>
-          <p className="underline">{experience[0].companyName}</p>
-          <p>
-            from: {experience[0].dateFrom} to: {experience[0].dateTill}
-          </p>
-          {/* maybe format the date better? */}
-          <p>{experience[0].responsibilities}</p>
+          {experience.map((_, index) => (
+            <>
+              {index > 0 && <br />}
+              <p className="underline">{experience[index].companyName}</p>
+              <p>
+                {" "}
+                {experience[index].position} // from:{" "}
+                {experience[index].dateFrom} to: {experience[index].dateTill}
+              </p>
+              <p>{experience[index].responsibilities}</p>
+            </>
+          ))}
         </div>
         <hr />
         <div className="divInPrint">
